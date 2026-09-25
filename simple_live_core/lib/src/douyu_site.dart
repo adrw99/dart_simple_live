@@ -166,7 +166,7 @@ class DouyuSite implements LiveSite {
       formUrlEncoded: true,
     );
 
-    final u = result['data']['rtmp_live'].tostring();
+    final u = result['data']['rtmp_live'].toString();
     final rc = RegExp(r'([0-9a-zA-Z]+)(_\\d+)?(.flv)');
     final match = rc.firstMatch(u);
     final k = match!.group(1)!;
@@ -178,7 +178,7 @@ class DouyuSite implements LiveSite {
       rc,
       (m) => '${m.group(1)}${m.group(2) ?? ''}.xs',
     );
-    return 'https://openflv-huos.douyucdn2.cn/live/${kk}&txSecret=${r["xp2p_txSecret"].tostring()}&txTime=${r["xp2p_txTime"].tostring()}&domain=hdltctwk.douyucdn.cn';
+    return 'https://openflv-huos.douyucdn2.cn/live/${kk}&txSecret=${r["xp2p_txSecret"].toString()}&txTime=${r["xp2p_txTime"].toString()}&domain=hdltctwk.douyucdn.cn';
   }
 
   @override
