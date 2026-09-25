@@ -178,7 +178,7 @@ class DouyuSite implements LiveSite {
       rc,
       (m) => '${m.group(1)}${m.group(2) ?? ''}.xs',
     );
-    return 'https://openflv-huos.douyucdn2.cn/live/${kk}&txSecret=${r["xp2p_txSecret"].tostring()}&txTime=${r["xp2p_txTime"].tostring()}&domain=hdltctwk.douyucdn.cn'
+    return 'https://openflv-huos.douyucdn2.cn/live/${kk}&txSecret=${r["xp2p_txSecret"].tostring()}&txTime=${r["xp2p_txTime"].tostring()}&domain=hdltctwk.douyucdn.cn';
   }
 
   @override
