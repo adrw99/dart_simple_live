@@ -166,7 +166,19 @@ class DouyuSite implements LiveSite {
       formUrlEncoded: true,
     );
 
-    return "${result["data"]["rtmp_url"]}/${HtmlUnescape().convert(result["data"]["rtmp_live"].toString())}";
+    final u = result['data']['rtmp_live'].tostring();
+    final rc = RegExp(r'([0-9a-zA-Z]+)(_\\d+)?(.flv)');
+    final match = rc.firstMatch(u);
+    final k = match!.group(1)!;
+    final r = await HttpClient.instance.getJson(
+      'https://sdkapiv4.douyucdn.cn/p2p/get_txsecret',
+      queryParameters: {'lid':k},
+    );
+    final kk = u.replaceFirstMapped(
+      rc,
+      (m) => '${m.group(1)}${m.group(2) ?? ''}.xs',
+    );
+    return 'https://openflv-huos.douyucdn2.cn/live/${kk}&txSecret=${r["xp2p_txSecret"].tostring()}&txTime=${r["xp2p_txTime"].tostring()}&domain=hdltctwk.douyucdn.cn'
   }
 
   @override
